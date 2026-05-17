@@ -126,7 +126,7 @@
 
 	<h2>Interests</h2>
     <div id="news-content" >	
-	  <span> My research interests focus on event-based vision, particularly object tracking and object detection using event cameras.</span> <br>
+	  <span> My research interests focus on event-based vision, particularly object tracking and object detection using event cameras.</span> <br> <br>
 	  <span> Key Words: Event Camera, Visual Object Tracking, Object Detection. </span> <br> <br>
     </div>
 
@@ -373,6 +373,21 @@
             </div>
         </div>
     </div>
+
+  window.addEventListener('load', () => {
+	 const el = document.getElementById('page-like-3');
+	 if (!el || !el.shadowRoot) return;
+	
+	 // 找到 Shadow DOM 内部的 SVG
+	 const svg = el.shadowRoot.querySelector('svg.like-icon');
+	 if (svg) {
+	    // 方法一：直接覆盖掉错误的 color，改成你想要的颜色
+	    svg.style.color = '#FF6B6B';
+	    
+	    // 方法二（更稳妥）：直接把描边颜色写死，这样不需要依赖 currentColor
+	    // svg.querySelector('path').setAttribute('stroke', '#FF6B6B');
+	}
+});
 
 </body>
 </html>
