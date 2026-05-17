@@ -32,6 +32,14 @@
             .github-corner .octo-arm { animation: octocat-wave 560ms ease-in-out; }
         }
     </style>
+
+	<!-- 在页面的 </head> 标签之前引入 Open Likes 的 JavaScript 文件 -->
+	<script type="module" src="https://unpkg.com/open-likes@1.0.1/dist/open-likes.js"></script>
+	<script>
+	  // 配置你的 Supabase 连接信息 (请替换为你自己的)
+	  window.OPEN_LIKES_SUPABASE_URL = 'https://gkflartbiatgyejtzsgk.supabase.co';
+	  window.OPEN_LIKES_SUPABASE_ANON_KEY = 'sb_publishable_3fiskt5JxU5txxJNswLSxA_dP9vi1Ya';
+	</script>
 </head>
 
 <body>
@@ -310,12 +318,40 @@
     </div> -->
 
 
+    <!-- <div id="footer">
+	<div id="footer-text"></div>
+    </div>
+        <div id = "logo" style="margin-top: 10px; text-align:center">
+            <div align="center" style="margin:auto;padding-top:10px">
+                <div align="center">
+					<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=450&t=tt&d=bZiO6ImPYU3yJ2bodL6YgFuZ0ZpiS4qAhvdOpCSUxj8&co=1980c9'></script>
+                </div>
+            <br>
+                &copy; Dong Hao | <span style="color:Red">Last updated: May, 2026</span>
+            </div>
+        </div>
+    </div> -->
+
     <div id="footer">
 	<div id="footer-text"></div>
     </div>
         <div id = "logo" style="margin-top: 10px; text-align:center">
             <div align="center" style="margin:auto;padding-top:10px">
                 <div align="center">
+
+                    <!-- 点赞插件位置 -->
+                    <!-- 你可以在这里切换不同风格 -->
+                    <!-- 1. 小心心风格 (红色) -->
+                    <open-likes id="page-like-1" icon="heart" color="#FF6B6B" style="margin-bottom: 10px; display: block;"></open-likes>
+
+                    <!-- 2. 大拇指风格 (蓝色) -->
+                    <!-- <open-likes id="page-like-2" icon="thumbs" color="#2196F3" style="margin-bottom: 10px; display: block;"></open-likes> -->
+
+                    <!-- 3. 星星风格 (橙色) -->
+                    <!-- <open-likes id="page-like-3" icon="star" color="#FF9800" style="margin-bottom: 10px; display: block;"></open-likes> -->
+                    <!-- 点赞插件结束 -->
+
+                    <!-- 原有的流量统计插件 -->
 					<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=450&t=tt&d=bZiO6ImPYU3yJ2bodL6YgFuZ0ZpiS4qAhvdOpCSUxj8&co=1980c9'></script>
                 </div>
             <br>
