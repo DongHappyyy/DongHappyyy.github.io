@@ -375,36 +375,30 @@
     </div>
 
 	<!-- 修改小心心控件颜色 -->
-	(function fixHeart() {
-		  const el = document.getElementById('page-like-3');
-		  if (!el) return;
-		
-		  const tryFix = () => {
-		    const root = el.shadowRoot;
-		    if (!root) {
-		      requestAnimationFrame(tryFix);
-		      return;
-		    }
-		    const path = root.querySelector('svg.like-icon path');
-		    if (path) {
-		      // 根据你的需求选择下面其中一行：
-		      // 1. 实心红心
-		      path.setAttribute('fill', '#FF6B6B');
-		      path.setAttribute('stroke', '#FF6B6B');
-		      
-		      // 2. 或者空心红心（只留红色描边，内部透明）
-		      // path.setAttribute('fill', 'none');
-		      // path.setAttribute('stroke', '#FF6B6B');
-		      
-		      // 顺便清理掉 SVG 上错误的 color 样式，避免干扰
-		      const svg = root.querySelector('svg.like-icon');
-		      if (svg) svg.style.color = '';
-		    } else {
-		      requestAnimationFrame(tryFix);
-		    }
-		  };
-		  setTimeout(tryFix, 100);
-	})();
+	<script>
+    (function fixHeart() {
+      const el = document.getElementById('page-like-3');
+      if (!el) return;
+
+      const tryFix = () => {
+        const root = el.shadowRoot;
+        if (!root) {
+          requestAnimationFrame(tryFix);
+          return;
+        }
+        const path = root.querySelector('svg.like-icon path');
+        if (path) {
+          path.setAttribute('fill', '#FF6B6B');
+          path.setAttribute('stroke', '#FF6B6B');
+          const svg = root.querySelector('svg.like-icon');
+          if (svg) svg.style.color = '';
+        } else {
+          requestAnimationFrame(tryFix);
+        }
+      };
+      setTimeout(tryFix, 100);
+    })();
+  </script>
 
 </body>
 </html>
