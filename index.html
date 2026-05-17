@@ -374,28 +374,36 @@
         </div>
     </div>
 
-  (function fixHeart() {
-	  const el = document.getElementById('page-like-3');
-	  if (!el) return;
-	
-	  // 等待 shadow DOM 就绪
-	  const tryFix = () => {
-	    const root = el.shadowRoot;
-	    if (!root) {
-	      requestAnimationFrame(tryFix);
-	      return;
-	    }
-	    const path = root.querySelector('svg.like-icon path');
-	    if (path) {
-	      // 直接写死描边颜色，不再依赖 currentColor
-	      path.setAttribute('stroke', '#FF6B6B');
-	    } else {
-	      // 如果还没渲染出来，再等一帧
-	      requestAnimationFrame(tryFix);
-	    }
-	  };
-	  // 稍微延迟，确保组件完全挂载
-	  setTimeout(tryFix, 100);
+	<!-- 修改小心心控件颜色 -->
+	(function fixHeart() {
+		  const el = document.getElementById('page-like-3');
+		  if (!el) return;
+		
+		  const tryFix = () => {
+		    const root = el.shadowRoot;
+		    if (!root) {
+		      requestAnimationFrame(tryFix);
+		      return;
+		    }
+		    const path = root.querySelector('svg.like-icon path');
+		    if (path) {
+		      // 根据你的需求选择下面其中一行：
+		      // 1. 实心红心
+		      path.setAttribute('fill', '#FF6B6B');
+		      path.setAttribute('stroke', '#FF6B6B');
+		      
+		      // 2. 或者空心红心（只留红色描边，内部透明）
+		      // path.setAttribute('fill', 'none');
+		      // path.setAttribute('stroke', '#FF6B6B');
+		      
+		      // 顺便清理掉 SVG 上错误的 color 样式，避免干扰
+		      const svg = root.querySelector('svg.like-icon');
+		      if (svg) svg.style.color = '';
+		    } else {
+		      requestAnimationFrame(tryFix);
+		    }
+		  };
+		  setTimeout(tryFix, 100);
 	})();
 
 </body>
