@@ -374,20 +374,29 @@
         </div>
     </div>
 
-  window.addEventListener('load', () => {
-	 const el = document.getElementById('page-like-3');
-	 if (!el || !el.shadowRoot) return;
+  (function fixHeart() {
+	  const el = document.getElementById('page-like-3');
+	  if (!el) return;
 	
-	 // 找到 Shadow DOM 内部的 SVG
-	 const svg = el.shadowRoot.querySelector('svg.like-icon');
-	 if (svg) {
-	    // 方法一：直接覆盖掉错误的 color，改成你想要的颜色
-	    svg.style.color = '#FF6B6B';
-	    
-	    // 方法二（更稳妥）：直接把描边颜色写死，这样不需要依赖 currentColor
-	    // svg.querySelector('path').setAttribute('stroke', '#FF6B6B');
-	}
-});
+	  // 等待 shadow DOM 就绪
+	  const tryFix = () => {
+	    const root = el.shadowRoot;
+	    if (!root) {
+	      requestAnimationFrame(tryFix);
+	      return;
+	    }
+	    const path = root.querySelector('svg.like-icon path');
+	    if (path) {
+	      // 直接写死描边颜色，不再依赖 currentColor
+	      path.setAttribute('stroke', '#FF6B6B');
+	    } else {
+	      // 如果还没渲染出来，再等一帧
+	      requestAnimationFrame(tryFix);
+	    }
+	  };
+	  // 稍微延迟，确保组件完全挂载
+	  setTimeout(tryFix, 100);
+	})();
 
 </body>
 </html>
